@@ -14,8 +14,9 @@ Welcome to the Ollama LLM Setup Guide! This repository will help you set up and 
    - [Download and Install the Phi-3 Model](#download-and-install-the-phi-3-model)
    - [Running the Phi-3 Model](#running-the-phi-3-model)
 6. [Scripts and Configuration Files](#scripts-and-configuration-files)
-7. [Troubleshooting](#troubleshooting)
-8. [Example Screenshots](#example-screenshots)
+7. [Customize the Model](#customize-the-model)
+8. [Troubleshooting](#troubleshooting)
+9. [Results](#results)
 
 ## Introduction
 
@@ -140,6 +141,30 @@ Use this configuration with curl:
 curl http://localhost:11434/api/generate -d @api_request.json
 ```
 
+## Customize the Model
+Models from the Ollama library can be customized with a prompt. For example, to customize the **phi3** model:
+
+1. Create a **Modelfile**:
+```shell
+FROM phi3
+
+# set the temperature to 1 (higher is more creative, lower is more coherent)
+PARAMETER temperature 1
+
+# set the system message
+SYSTEM """
+You are Super-Agent from Northeastern University. Answer as Super-Agent, the assistant, only.
+"""
+```
+
+2. Next, create and run the model:
+
+```shell
+ollama create customModel -f ./Modelfile
+ollama run customModel
+>>> hi
+Hello! It's your friend Mario.
+```
 ## Troubleshooting
 
 - Ensure the Ollama service is running by checking for the process in Task Manager.
@@ -147,19 +172,112 @@ curl http://localhost:11434/api/generate -d @api_request.json
 - Check for any error messages in the terminal where Ollama is running.
 - Ensure your NVIDIA GPU drivers are up to date for hardware acceleration.
 
-## Example Screenshots
+## Results
 
 1. Check the available ollama models in our local
 
-![img.png](images/img.png)
+   ![img.png](images/img.png)
+
 
 2. Initiate and Run the **Llama3** model
 
-![img_1.png](images/img_1.png)
+   ![img_1.png](images/img_1.png)
+
+
 3. Here is the sample query response
 
-![img_1.png](images/img_2.png)
+   ![img_1.png](images/img_2.png)
+
+
+4. Build the **Custom Model** (on Phi-3):
+
+   4.1 Create a Modelfile with below configuration*
+   ```shell
+   FROM phi3
+   
+   # set the temperature to 1 (higher is more creative, lower is more coherent)
+   PARAMETER temperature 1
+   
+   # set the system message
+   SYSTEM """
+   You are Super-Agent from Northeastern University. Answer as Super-Agent, the assistant, only.
+   """
+   ```
+   4.2 Check the Custom Model Response
+
+   ![img.png](images/img-4.png)
+
+
+### Compare the Response of Llama3 vs Phi3 vs Custom Model:
+
+#### Llama3 Response:
+```shell
+C:\Users\jkkn7\PycharmProjects\LocalLLM-dev>ollama run llama3
+
+>>> what is machine learning in short?
+Machine learning (ML) is a type of artificial intelligence that
+enables computers to learn from data without being explicitly
+programmed. In other words, ML allows algorithms to improve their
+performance on a task by analyzing and adapting to new data.
+
+Here's a simple analogy:
+
+Imagine you're trying to recognize handwritten numbers (0-9). A
+non-machine learning program would be given specific rules to
+identify each number, like "if the number has a curved line, it's
+3."
+
+A machine learning program, on the other hand, is shown many
+examples of handwritten numbers and learns to recognize patterns and
+relationships between them. As it sees more data, it improves its
+accuracy in identifying numbers.
+
+In essence, ML is about teaching computers to:
+
+1. Learn from data
+2. Improve their performance over time
+3. Make predictions or decisions based on that learning
+
+This technology has many applications, including image recognition,
+natural language processing, game playing, and much more!
+```
+#### Phi3 Response:
+```shell
+C:\Users\jkkn7\PycharmProjects\LocalLLM-dev>ollama run phi3
+
+>>> what is machine learning in short?
+ Machine learning is a branch of artificial intelligence that
+involves the development of algorithms and statistical models that
+enable computers to improve at tasks through experience, without
+being explicitly programmed. These systems can learn from and make
+predictions or decisions based on data.
+
+Machine learning encompasses a variety of techniques for teaching
+machines how to perform specific tasks by analyzing patterns in
+large sets of data. This includes supervised learning (where the
+model is trained with labeled data), unsupervised learning (where it
+identifies structure in unlabeled data), and reinforcement learning
+(where an agent learns to make decisions through rewards).
+
+Ultimately, machine learning aims to enable computers to learn from
+past experiences and improve their performance on tasks over time,
+just like humans do.
+```
+
+#### Custom Model Response:
+
+```shell
+C:\Users\jkkn7\PycharmProjects\LocalLLM-dev>ollama run customModel
+>>> what is machine learning in short?
+ Machine learning is a branch of artificial intelligence that
+focuses on developing algorithms and models allowing computers to
+learn from and make decisions or predictions based on data. It
+involves feeding large datasets into systems so they can identify
+patterns, adjust behaviors, and improve their performance
+autonomously over time without being explicitly programmed for
+specific tasks.
+```
+
 
 ---
-
 Thank you for using the Ollama LLM Setup Guide! I hope this documentation helps you get started with running LLMs locally on your Windows system.

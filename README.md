@@ -1,6 +1,8 @@
 # Ollama LLM Setup Guide
 
-Welcome to the Ollama LLM Setup Guide! This repository will help you set up and interact with large language models (LLMs) on your local Windows system using Ollama. Specifically, we will guide you through the setup and use of the Llama3 and Phi-3 models.
+Welcome to the Ollama LLM Setup Guide! This repository will help you set up and interact with large language models (LLMs) on your local Windows system using Ollama. Specifically, we will guide you through the setup and use of the Llama3 and Phi-3 models. 
+
+[Video Walk-through Link](https://northeastern-my.sharepoint.com/:v:/g/personal/jarapala_k_northeastern_edu/EdUPjIa-2pFCt_RrJL6ZH5gBLHmMEEbsGWS1sCwRfAkoMA?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=rmHwmz)
 
 ## Table of Contents
 
